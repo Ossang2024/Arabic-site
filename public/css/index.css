@@ -1,0 +1,514 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Asap:ital,wght@0,100..900;1,100..900&family=Bebas+Neue&family=Cormorant+Garamond:wght@336&family=DM+Sans:ital,opsz@0,9..40;1,9..40&family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@400..700&family=Estonia&family=Faculty+Glyphic&family=Gothic+A1&family=Great+Vibes&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=League+Spartan:wght@100..900&family=Libertinus+Serif+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+HR+Lijeva:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sigmar&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+:root {
+    --georgia: Georgia, 'Times New Roman', Times, serif;
+    --inter: 'Inter', sans-serif;
+    --ibm: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.section1 {
+    height: 100vh;
+    position: relative; 
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+.background-video { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: 
+    cover; z-index: -2; 
+} 
+    
+.overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: -1; 
+} 
+
+.content {
+    padding: 0px 50px;
+    font-family: var(--georgia);
+}
+
+.content header {
+    text-align: center; 
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid white 1px;
+}
+
+.content header .logo img{
+    width: 150px; 
+    height: auto; 
+}
+
+.content header nav ul {
+    list-style: none; 
+    display: flex; 
+    align-items: center;
+    gap: 20px; 
+}
+
+.content header nav ul li a {
+    color: white; 
+    text-decoration: none;
+    font-weight: 400; 
+    font-size: 16.88px; 
+    transition: color 0.3s; 
+}
+
+.content header nav ul li .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "inter", sans-serif;
+    position: relative;
+    z-index: 5500;
+    margin-right: 40px;
+}
+
+.content header nav ul li .lang-switch span {
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.content header nav ul li .lang-switch button {
+    color: white;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.content header nav ul li .lang-switch button:hover,
+.content header nav ul li .lang-switch button.active {
+    opacity: 1;
+    font-weight: 500;
+}
+
+/* Code de masquage des éléments google translate  */
+/* Barre Google en haut de page */
+body > .skiptranslate,
+.goog-te-banner-frame,
+iframe.skiptranslate,
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+
+/* Décalage du body causé par la barre */
+body {
+  top: 0 !important;
+  position: static !important;
+  min-height: 100%;
+}
+
+/* Infobulle (texte original) au survol */
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO {
+  display: none !important;
+}
+
+/* Surlignage jaune/bleu au survol du texte */
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Widget et conteneur */
+#google_translate_element,
+.goog-te-gadget {
+  display: none !important;
+}
+
+
+/* Menu de navigation  */
+/* Bouton burger */
+.burger {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+.burger span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: white;
+    transition: width 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+}
+
+.burger.is-open {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    z-index: 5600;
+}
+
+.burger.is-open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.is-open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.burger span:nth-child(2) { width: 18px; }
+.burger:hover span:nth-child(2) { width: 30px; }
+
+/* Grand menu plein écran */
+.side-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background: #00833d;            /* vert de leur site, à adapter */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: opacity 0.4s, transform 0.4s, visibility 0.4s;
+    overflow-y: auto;
+    width: 40%;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: auto;
+}
+.side-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* .close-menu {
+    position: absolute;
+    top: 20px;
+    inset-inline-end: 40px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 48px;
+    line-height: 1;
+    cursor: pointer;
+} */
+
+.side-links {
+    list-style: none;
+    padding: 10px 0px 0px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+}
+.side-links > li { 
+    border-bottom: solid 1px white;
+    padding: 0px 100px;
+    padding-block: 10px;
+}
+
+.side-links a,
+.sub-toggle {
+    color: white;
+    text-decoration: none;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 35px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.3s;
+}
+.side-links a:hover,
+.sub-toggle:hover { opacity: 1; }
+
+.plus {
+    display: inline-block;
+    margin-inline-start: 8px;
+    transition: transform 0.3s;
+}
+.has-sub.open .plus { transform: rotate(45deg); }
+
+/* Sous-menu déroulant */
+.submenu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+.has-sub.open .submenu { max-height: 200px; }
+.submenu li { margin: 10px 0; }
+.submenu a { font-size: 22px; }
+
+@media (max-width: 768px) {
+    .content header nav ul li:nth-child(-n+3) { display: none; } /* cache les 3 liens sur mobile */
+    .side-links a, .sub-toggle { font-size: 24px; }
+}
+
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    border: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.section1 .hero {
+    color: white;
+    padding: 50px 50px 50px 10px;
+    font-family: var(--georgia);
+}
+
+.section1 .hero h1 {
+    font-size: 70px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.section1 .hero h2 {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.section2 {
+    min-height: 100vh;
+    position: relative; 
+    background-image: url('../images/bg-sec2.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.backdrop {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    backdrop-filter: blur(50px);
+    padding: 50px;
+}
+
+.section2 .section-content {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    color: white;
+}
+
+.section2 .section-content .content {
+    background-color: #00833d;
+    padding: 30px 30px 30px 30px;
+    max-width: 400px;
+    font-family: var(--georgia);
+    position: relative;
+    top: -120px;
+    z-index: 120000;
+}
+
+.section2 .section-content .content h3 {
+    font-size: 16px;
+    margin-bottom:70px;
+    text-align: center;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.section2 .section-content .content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.section2 .section-content .content h2 {
+    font-size: 29px;
+    margin-bottom:10px;
+    font-weight: 400;
+}
+
+.section2 .section-content .content .text1 {
+    font-size: 16px;
+    margin-bottom:30px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.section2 .section-content .content .text2 {
+    font-size: 16px;
+    margin-bottom:20px;
+    font-weight: 400;
+    font-family: var(--ibm);
+    line-height: 24px;
+}
+
+.section2 .section-content .content .link a{
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--ibm);
+    line-height: 24px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.section2 .lign {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--ibm);
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2A2A2A;
+}
+
+.section2 .lign div {
+    flex: 1;
+    height: 2px;
+    background-color: #2A2A2A;
+}
+
+
+
+
+
+
+
+
+
+
+/* ---------- Header : masquage / réapparition au scroll ---------- */
+
+/* Couleurs pilotées par des variables */
+.content .site-header {
+    --hdr-fg: white;
+    --hdr-bg: transparent;
+    --hdr-line: 1;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1002;              /* au-dessus du menu latéral (1000) */
+    padding: 10px 70px;
+    border-bottom: none;        /* remplacé par le trait ::after ci-dessous */
+    background: var(--hdr-bg);
+    transition: top 0.45s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Trait blanc d'origine (aligné sur les marges de 50px) */
+.content .site-header::after {
+    content: "";
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    bottom: 0;
+    height: 1px;
+    background: white;
+    opacity: var(--hdr-line);
+    transition: opacity 0.3s ease;
+}
+
+/* État : réapparition en remontant (fond blanc, texte vert) */
+.content .site-header.is-solid {
+    --hdr-fg: #00833d;
+    --hdr-bg: white;
+    --hdr-line: 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* État : masqué en descendant */
+.content .site-header.is-hidden {
+    top: -150px;
+}
+
+/* Menu latéral ouvert : on garde le look d'origine (transparent, blanc) */
+body:has(.side-menu.open) .content .site-header {
+    --hdr-fg: white;
+    --hdr-bg: transparent;
+    --hdr-line: 1;
+    box-shadow: none;
+}
+
+/* Application des couleurs */
+.content .site-header nav ul li a,
+.content .site-header .lang-switch button,
+.content .site-header .lang-switch span {
+    color: var(--hdr-fg);
+}
+.content .site-header .burger span {
+    background: var(--hdr-fg);
+}
+
+/* Logo : blanc par défaut, vert quand le header est blanc */
+.logo-green { display: none; }
+.site-header.is-solid .logo-white { display: none; }
+.site-header.is-solid .logo-green { display: block; }
+body:has(.side-menu.open) .site-header.is-solid .logo-white { display: block; }
+body:has(.side-menu.open) .site-header.is-solid .logo-green { display: none; }
+
+/* Le header sort du flux : on compense sa hauteur (calculée en JS) */
+.section1 .content {
+    padding-top: var(--header-h, 80px);
+}
+
+@media (max-width: 768px) {
+    .content .site-header { padding: 10px 20px; }
+    .content .site-header::after { left: 20px; right: 20px; }
+}
+
+
+
