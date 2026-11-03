@@ -13,6 +13,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #F1F1F2;
+}
+
 .section1 {
     height: 100vh;
     position: relative; 
@@ -189,7 +193,11 @@ body {
     position: fixed;
     inset: 0;
     z-index: 5000;
-    background: #00833d;            /* vert de leur site, à adapter */
+    background:
+        radial-gradient(ellipse 28% 55% at 82% 55%, #e9d94e 0%, rgba(233, 217, 78, 0) 100%),
+        radial-gradient(ellipse 60% 70% at 20% 70%, #62b9a8 0%, rgba(98, 185, 168, 0) 100%),
+        linear-gradient(135deg, #7cc59a, #8cc28a);
+            /* vert de leur site, à adapter */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -291,7 +299,7 @@ body {
 }
 
 
-.section1 .hero {
+/* .section1 .hero {
     color: white;
     padding: 50px 50px 50px 10px;
     font-family: var(--georgia);
@@ -306,7 +314,7 @@ body {
 .section1 .hero h2 {
     font-size: 50px;
     font-weight: 400;
-}
+} */
 
 
 
@@ -327,6 +335,7 @@ body {
 
 .section2 {
     min-height: 100vh;
+    max-height: 130vh;
     position: relative; 
     background-image: url('../images/bg-sec2.png');
     background-size: cover;
@@ -413,6 +422,8 @@ body {
     font-weight: 600;
     font-size: 16px;
     color: #2A2A2A;
+    position: relative;
+    bottom: 40px;
 }
 
 .section2 .lign div {
@@ -442,7 +453,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1002;              /* au-dessus du menu latéral (1000) */
+    z-index: 6000;              /* au-dessus du menu latéral (1000) */
     padding: 10px 70px;
     border-bottom: none;        /* remplacé par le trait ::after ci-dessous */
     background: var(--hdr-bg);
@@ -465,9 +476,9 @@ body {
 /* État : réapparition en remontant (fond blanc, texte vert) */
 .content .site-header.is-solid {
     --hdr-fg: #00833d;
-    --hdr-bg: white;
-    --hdr-line: 0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    --hdr-bg: #f0f0f0;
+    --hdr-line: 1;
+    box-shadow: none;
 }
 
 /* État : masqué en descendant */
@@ -501,13 +512,245 @@ body:has(.side-menu.open) .site-header.is-solid .logo-white { display: block; }
 body:has(.side-menu.open) .site-header.is-solid .logo-green { display: none; }
 
 /* Le header sort du flux : on compense sa hauteur (calculée en JS) */
-.section1 .content {
+/* .section1 .content {
     padding-top: var(--header-h, 80px);
-}
+} */
 
 @media (max-width: 768px) {
     .content .site-header { padding: 10px 20px; }
-    .content .site-header::after { left: 20px; right: 20px; }
+    .content .site-header::after { 
+       content: "";
+       position: absolute;
+       left: 50px;
+       right: 50px;
+       bottom: 0;
+       height: 1px;
+       background: var(--hdr-fg);
+       opacity: var(--hdr-line);
+       transition: opacity 0.3s ease;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Texte héro fixe, coupure blanc/foncé au passage de la section 2 ---------- */
+.hero-fixed {
+    --hero-light: #ffffff;
+    --hero-dark: #3b3f5c;        /* à ajuster avec la pipette (F12) sur le site d'origine */
+
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    padding: calc(var(--header-h, 80px) + 50px) 60px 50px;
+    font-family: var(--georgia);
+    color: var(--hero-light);    /* repli si le navigateur ne gère pas le clip */
+    will-change: transform;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .hero-fixed {
+        background: linear-gradient(
+            to bottom,
+            var(--hero-light) 0,
+            var(--hero-light) var(--edge, 100%),
+            var(--hero-dark)  var(--edge, 100%)
+        );
+        -webkit-background-clip: text;
+                background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.hero-fixed h1 {
+    font-size: 70px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.hero-fixed h2 {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .hero-fixed { padding-inline: 20px; }
+    .hero-fixed h1 { font-size: 40px; }
+    .hero-fixed h2 { font-size: 26px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.section3 {
+    min-height: 100vh;
+    position: relative; 
+    padding: 100px 50px 50px 50px;
+}
+
+.section3 .cartes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ---------- Section projets : grille de cartes ---------- */
+.projects {
+    background: #f0f0f0;
+    padding: 130px 50px 50px 50px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 24px;                 /* lignes | colonnes */
+    max-width: 1400px;
+    margin-inline: auto;
+}
+
+/* Carte de base */
+.card {
+    display: grid;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+}
+
+.card__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 0;
+}
+
+.card__title {
+    font-weight: 400;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;          /* 2 lignes puis "…" */
+    line-clamp: 2;
+}
+
+/* ----- Grande carte : image | panneau ----- */
+.card--feature {
+    grid-column: 1 / -1;            /* occupe les 3 colonnes */
+    grid-template-columns: 1.13fr 1fr;
+    height: clamp(240px, 27vw, 330px);
+}
+
+.card--feature .card__panel {
+    position: relative;
+    padding: 70px 10px 20px;
+    font-family: var(--georgia);
+    background:
+        radial-gradient(ellipse 28% 55% at 82% 55%, #e9d94e 0%, rgba(233, 217, 78, 0) 100%),
+        radial-gradient(ellipse 60% 70% at 20% 70%, #62b9a8 0%, rgba(98, 185, 168, 0) 100%),
+        linear-gradient(135deg, #7cc59a, #8cc28a);
+}
+
+.card--feature .card__title {
+    font-size: clamp(34px, 4.3vw, 52px);
+    line-height: 1.25;
+}
+
+.card--feature .card__tag {
+    position: absolute;
+    inset-inline-end: 12px;
+    bottom: 20px;
+    font-size: 11px;
+    font-style: italic;
+}
+
+/* ----- Petites cartes : image au-dessus, légende dessous ----- */
+.card--small {
+    grid-template-rows: auto 1fr;
+}
+
+.card--small .card__img {
+    aspect-ratio: 5 / 4;
+    height: auto;
+}
+
+.card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px 26px;
+    font-family: var(--inter);
+}
+
+.card__label {
+    align-self: flex-end;           /* "CAMPAIGN" à droite */
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.card--left .card__label {
+    align-self: flex-start;         /* "COMPLETED" à gauche */
+}
+
+.card--small .card__title {
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+/* Dégradés des légendes */
+.card--violet .card__body {
+    background: linear-gradient(160deg, #6a5fc9 0%, #5f6fd0 55%, #4f7be0 100%);
+}
+.card--green .card__body {
+    background:
+        radial-gradient(circle at 15% 100%, #8be0b3 0%, rgba(139, 224, 179, 0) 65%),
+        linear-gradient(160deg, #1b9b5a, #2aa866);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 900px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .card--feature {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .card--feature .card__img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+    .card--feature .card__panel { padding: 24px 16px 44px; }
 }
 
 
